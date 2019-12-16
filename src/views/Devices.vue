@@ -105,103 +105,107 @@
           </v-list>
         </v-card>
       </v-col>
-      <v-col :sm="deviceListSize" class="border-right">
-        <v-card class="fill-height pa-0 ma-0" tile elevation="0">
-          <v-toolbar flat>
-            <v-toolbar-title>Geräte (10 von 18)</v-toolbar-title>
-            <v-spacer></v-spacer>
-            <v-tooltip top open-delay="500">
-              <template v-slot:activator="{ on }">
-                <v-btn icon v-on="on">
-                  <v-icon>mdi-plus</v-icon>
-                </v-btn>
+      <v-slide-x-transition>
+        <v-col :sm="deviceListSize" class="border-right">
+          <v-card class="fill-height pa-0 ma-0" tile elevation="0">
+            <v-toolbar flat>
+              <v-toolbar-title>Geräte (10 von 18)</v-toolbar-title>
+              <v-spacer></v-spacer>
+              <v-tooltip top open-delay="500">
+                <template v-slot:activator="{ on }">
+                  <v-btn icon v-on="on">
+                    <v-icon>mdi-plus</v-icon>
+                  </v-btn>
+                </template>
+                <span>Neues Gerät registrieren</span>
+              </v-tooltip>
+              <v-tooltip top open-delay="500">
+                <template v-slot:activator="{ on }">
+                  <v-btn icon v-on="on">
+                    <v-icon>mdi-file-upload-outline</v-icon>
+                  </v-btn>
+                </template>
+                <span>Geräte importieren</span>
+              </v-tooltip>
+              <v-tooltip top open-delay="500">
+                <template v-slot:activator="{ on }">
+                  <v-btn icon v-on="on">
+                    <v-icon>mdi-refresh</v-icon>
+                  </v-btn>
+                </template>
+                <span>Aktualisieren</span>
+              </v-tooltip>
+              <v-tooltip top open-delay="500">
+                <template v-slot:activator="{ on }">
+                  <v-btn icon v-on="on">
+                    <v-icon>mdi-dots-vertical</v-icon>
+                  </v-btn>
+                </template>
+                <span>Mehr</span>
+              </v-tooltip>
+            </v-toolbar>
+            <v-data-table
+              v-model="selected"
+              :headers="headers"
+              :items="desserts"
+              item-key="name"
+              show-select
+              class="elevation-0"
+              disable-pagination
+              hide-default-footer
+            >
+              <template v-slot:top>
+                <v-text-field
+                  class="pl-4 pr-4"
+                  placeholder="Suchen..."
+                  prepend-icon="mdi-magnify"
+                  filled
+                  rounded
+                  dense
+                  single-line
+                  clearable
+                ></v-text-field>
               </template>
-              <span>Neues Gerät registrieren</span>
-            </v-tooltip>
-            <v-tooltip top open-delay="500">
-              <template v-slot:activator="{ on }">
-                <v-btn icon v-on="on">
-                  <v-icon>mdi-file-upload-outline</v-icon>
-                </v-btn>
+              <template v-slot:item.name="{ item }">
+                <a href @click.prevent="showDeviceDetails=item.name">{{ item.name }}</a>
               </template>
-              <span>Geräte importieren</span>
-            </v-tooltip>
-            <v-tooltip top open-delay="500">
-              <template v-slot:activator="{ on }">
-                <v-btn icon v-on="on">
-                  <v-icon>mdi-refresh</v-icon>
-                </v-btn>
+              <template v-slot:item.calories="{ item }">
+                <v-chip
+                  class="ma-0"
+                  :color="item.calories < 200 ? 'success' : 'gray'"
+                  :text-color="item.calories < 200 ? 'white' : 'inherit'"
+                  small
+                  label
+                >Verbunden</v-chip>
               </template>
-              <span>Aktualisieren</span>
-            </v-tooltip>
-            <v-tooltip top open-delay="500">
-              <template v-slot:activator="{ on }">
-                <v-btn icon v-on="on">
-                  <v-icon>mdi-dots-vertical</v-icon>
-                </v-btn>
-              </template>
-              <span>Mehr</span>
-            </v-tooltip>
-          </v-toolbar>
-          <v-data-table
-            v-model="selected"
-            :headers="headers"
-            :items="desserts"
-            item-key="name"
-            show-select
-            class="elevation-0"
-            disable-pagination
-            hide-default-footer
-          >
-            <template v-slot:top>
-              <v-text-field
-                class="pl-4 pr-4"
-                placeholder="Suchen..."
-                prepend-icon="mdi-magnify"
-                filled
-                rounded
-                dense
-                single-line
-                clearable
-              ></v-text-field>
-            </template>
-            <template v-slot:item.name="{ item }">
-              <a href @click.prevent="showDeviceDetails=item.name">{{ item.name }}</a>
-            </template>
-            <template v-slot:item.calories="{ item }">
-              <v-chip
-                class="ma-0"
-                :color="item.calories < 200 ? 'success' : 'gray'"
-                :text-color="item.calories < 200 ? 'white' : 'inherit'"
-                small
-                label
-              >Verbunden</v-chip>
-            </template>
-            <!-- <template v-slot:item.data-table-select="{ isSelected, select }">
+              <!-- <template v-slot:item.data-table-select="{ isSelected, select }">
               <v-simple-checkbox color="green" :value="isSelected" @input="select($event)"></v-simple-checkbox>
-            </template>-->
-          </v-data-table>
-        </v-card>
-      </v-col>
-      <v-col sm="3" class="border-right" v-if="showDeviceDetails">
-        <v-card class="fill-height pa-0 ma-0" tile elevation="0">
-          <v-toolbar flat>
-            <v-toolbar-title>{{showDeviceDetails}}</v-toolbar-title>
-            <v-spacer></v-spacer>
-            <v-tooltip top open-delay="500">
-              <template v-slot:activator="{ on }">
-                <v-btn icon v-on="on" @click.stop="showDeviceDetails=null">
-                  <v-icon>mdi-window-close</v-icon>
-                </v-btn>
-              </template>
-              <span>Schließen</span>
-            </v-tooltip>
-          </v-toolbar>
-          <v-card-title class="pt-2">
-            <v-btn depressed small color="primary">Firmware aktualisieren</v-btn>
-          </v-card-title>
-        </v-card>
-      </v-col>
+              </template>-->
+            </v-data-table>
+          </v-card>
+        </v-col>
+      </v-slide-x-transition>
+      <v-slide-x-reverse-transition>
+        <v-col sm="3" class="border-right" v-if="showDeviceDetails">
+          <v-card class="fill-height pa-0 ma-0" tile elevation="0">
+            <v-toolbar flat>
+              <v-toolbar-title>{{showDeviceDetails}}</v-toolbar-title>
+              <v-spacer></v-spacer>
+              <v-tooltip top open-delay="500">
+                <template v-slot:activator="{ on }">
+                  <v-btn icon v-on="on" @click.stop="showDeviceDetails=null">
+                    <v-icon>mdi-window-close</v-icon>
+                  </v-btn>
+                </template>
+                <span>Schließen</span>
+              </v-tooltip>
+            </v-toolbar>
+            <v-card-title class="pt-2">
+              <v-btn depressed small color="primary">Firmware aktualisieren</v-btn>
+            </v-card-title>
+          </v-card>
+        </v-col>
+      </v-slide-x-reverse-transition>
     </v-row>
   </v-container>
 </template>

@@ -106,7 +106,9 @@ export default {
 
 #app-bar {
   color: #08a5e0;
-  box-shadow: 0px 1px 1px -1px rgba(0, 0, 0, 0.96) !important;
+  /*box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.66) !important;*/
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0) !important;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.12) !important;
 }
 
 #app-footer {

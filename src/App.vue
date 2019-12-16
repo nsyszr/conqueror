@@ -1,28 +1,46 @@
 <template>
   <v-app id="app">
-    <!-- <v-navigation-drawer v-model="drawer" mini-variant>
+    <v-navigation-drawer
+      app
+      v-model="drawer"
+      clipped
+      mini-variant
+      mini-variant-width="64"
+      color="white"
+      light
+    >
       <v-list dense>
-        <v-list-item link to="/">
+        <v-list-item link to="/" color="primary">
           <v-list-item-action>
-            <v-icon>mdi-view-dashboard</v-icon>
+            <v-tooltip right open-delay="100">
+              <template v-slot:activator="{ on }">
+                <v-icon v-on="on">mdi-view-dashboard</v-icon>
+              </template>
+              <span>Dashboard</span>
+            </v-tooltip>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>Dashboard</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item link to="/devices">
+        <v-list-item link to="/devices" color="primary">
           <v-list-item-action>
-            <v-icon>mdi-settings</v-icon>
+            <v-tooltip right open-delay="100">
+              <template v-slot:activator="{ on }">
+                <v-icon v-on="on">mdi-view-list</v-icon>
+              </template>
+              <span>Geräteverwaltung</span>
+            </v-tooltip>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Settings</v-list-item-title>
+            <v-list-item-title>Geräteverwaltung</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
-    </v-navigation-drawer>-->
+    </v-navigation-drawer>
 
-    <!-- <v-app-bar app clipped-left class="pl-3" color="white" elevation="0" dense> -->
-    <v-app-bar app clipped-left color="white" elevation="1" id="app-bar">
+    <!-- <v-app-bar app clipped-left color="white" elevation="0" dense> -->
+    <v-app-bar app clipped-left color="white" elevation="1" class="pl-1" id="app-bar">
       <v-app-bar-nav-icon color="primary" @click.stop="drawer = !drawer" />
 
       <v-toolbar-title>IoT Konsole</v-toolbar-title>
@@ -43,6 +61,9 @@
     </v-app-bar>
 
     <v-content>
+      <!-- <div class="d-flex flex-column border-bottom app-breadcrumbs pl-4">
+        <v-breadcrumbs class="pa-0" :items="items" divider=">"></v-breadcrumbs>
+      </div> style="margin-top:-32px;padding-top:32px;"-->
       <router-view></router-view>
     </v-content>
 
@@ -55,7 +76,19 @@
 <script>
 export default {
   data: () => ({
-    drawer: null
+    drawer: null,
+    items: [
+      {
+        text: "Home",
+        disabled: false,
+        href: "breadcrumbs_dashboard"
+      },
+      {
+        text: "Geräteverwaltung",
+        disabled: true,
+        href: "breadcrumbs_link_1"
+      }
+    ]
   }),
   created() {
     this.$vuetify.theme.dark = false;
@@ -81,6 +114,12 @@ export default {
   background-color: rgba(0, 0, 0, 0.12);
   // border-top: 1px solid rgba(0, 0, 0, 0.1) !important;
   // box-shadow: 0px 1px 1px -1px rgba(0, 0, 0, 0.33) !important;
+}
+
+.app-breadcrumbs {
+  background-color: rgba(0, 0, 0, 0);
+  min-height: 32px;
+  padding-top: 6px;
 }
 
 /*.v-list-item {

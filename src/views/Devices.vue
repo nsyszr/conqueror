@@ -1,8 +1,8 @@
 <template>
   <v-container class="fill-height ma-0 pa-0" fluid>
-    <!--<v-row>
+    <!-- <v-row>
       <v-col>
-        <h1>This is the devices page</h1>
+        <span>This is the devices page</span>
       </v-col>
     </v-row>-->
     <!-- <h1>group={{ groupItemModel }}</h1>
@@ -113,7 +113,7 @@
             <v-tooltip top open-delay="500">
               <template v-slot:activator="{ on }">
                 <v-btn icon v-on="on">
-                  <v-icon>mdi-plus-thick</v-icon>
+                  <v-icon>mdi-plus</v-icon>
                 </v-btn>
               </template>
               <span>Neues Gerät registrieren</span>
@@ -121,10 +121,18 @@
             <v-tooltip top open-delay="500">
               <template v-slot:activator="{ on }">
                 <v-btn icon v-on="on">
-                  <v-icon>mdi-database-import</v-icon>
+                  <v-icon>mdi-file-upload-outline</v-icon>
                 </v-btn>
               </template>
               <span>Geräte importieren</span>
+            </v-tooltip>
+            <v-tooltip top open-delay="500">
+              <template v-slot:activator="{ on }">
+                <v-btn icon v-on="on">
+                  <v-icon>mdi-refresh</v-icon>
+                </v-btn>
+              </template>
+              <span>Aktualisieren</span>
             </v-tooltip>
             <v-tooltip top open-delay="500">
               <template v-slot:activator="{ on }">

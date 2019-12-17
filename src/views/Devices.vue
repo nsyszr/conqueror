@@ -105,7 +105,6 @@
           </v-list>
         </v-card>
       </v-col>
-      <v-slide-x-transition>
         <v-col :sm="deviceListSize" class="border-right">
           <v-card class="fill-height pa-0 ma-0" tile elevation="0">
             <v-toolbar flat>
@@ -184,8 +183,6 @@
             </v-data-table>
           </v-card>
         </v-col>
-      </v-slide-x-transition>
-      <v-slide-x-reverse-transition>
         <v-col sm="3" class="border-right" v-if="showDeviceDetails">
           <v-card class="fill-height pa-0 ma-0" tile elevation="0">
             <v-toolbar flat>
@@ -205,7 +202,6 @@
             </v-card-title>
           </v-card>
         </v-col>
-      </v-slide-x-reverse-transition>
     </v-row>
   </v-container>
 </template>

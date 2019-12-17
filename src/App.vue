@@ -49,15 +49,38 @@
         <v-img src="./assets/insys-icom-logo.png" height="48" width="86"></v-img>
       </span>
       <v-spacer></v-spacer>
-      <v-btn icon color="primary">
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-      <v-btn icon color="primary">
-        <v-icon>mdi-heart</v-icon>
-      </v-btn>
-      <v-btn icon color="primary">
-        <v-icon>mdi-dots-vertical</v-icon>
-      </v-btn>
+              <v-tooltip bottom open-delay="500">
+                <template v-slot:activator="{ on }">
+                  <v-btn icon v-on="on" color="primary">
+                    <v-icon>mdi-console-line</v-icon>
+                  </v-btn>
+                </template>
+                <span>Kommando ausführen</span>
+              </v-tooltip>
+              <v-tooltip bottom open-delay="500">
+                <template v-slot:activator="{ on }">
+                  <v-btn icon v-on="on" color="primary">
+                    <v-icon>mdi-bell-outline</v-icon>
+                  </v-btn>
+                </template>
+                <span>Benachrichtigungen anzeigen</span>
+              </v-tooltip>
+              <v-tooltip bottom open-delay="500">
+                <template v-slot:activator="{ on }">
+                  <v-btn icon v-on="on" color="primary">
+                    <v-icon>mdi-settings-outline</v-icon>
+                  </v-btn>
+                </template>
+                <span>Einstellungen</span>
+              </v-tooltip>
+              <v-tooltip bottom open-delay="500">
+                <template v-slot:activator="{ on }">
+                  <v-btn icon v-on="on" color="primary">
+                    <v-icon>mdi-dots-vertical</v-icon>
+                  </v-btn>
+                </template>
+                <span>Mehr</span>
+              </v-tooltip>
     </v-app-bar>
 
     <v-content>
